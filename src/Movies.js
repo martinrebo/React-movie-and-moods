@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Slider from "react-slick"; 
+import Slider from "react-slick";
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
+import "../src/Movies.css";
 
 function Movies() {
 
@@ -22,6 +23,7 @@ function Movies() {
     useEffect(() => {
         apiCall();
     })
+
 
     //URL constructor
     let urlParameters = '&language=en-US&with_genres=' + genre + '&primary_release_year=2019&sort_by=vote_average.desc&vote_count.gte=10';
@@ -45,37 +47,46 @@ function Movies() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1
-      };
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        centerMode: true
+    };
 
+   // Modal 
 
     return (
 
-        <div>
-            ----- Buttons ---- 
-            <div> 
-            <button onClick={() => setGenre(878)}>Gernes button set</button>
-            <button onClick={() => setData(data)}>Data button set</button>
+        <div className="container-movie-back">
+            ----- Buttons ----
+            <div>
+                <button onClick={() => setGenre(878)}>Gernes button set</button>
+                <button onClick={() => setData(data)}>Data button set</button>
             </div>
             ------ Genre ID --------
             <div id="genre"> </div>
             -------------State Data ---------------
             {isLoading ? (
-<div>
-                "loading ...  "
+                <div>
+                    "loading ...  "
 </div>
 
             ) : (
-                <Slider {...settings}>
-                    {data.results.map((obj) =>
-                        <div key={obj.id}>
-                            <div> {obj.vote_count} </div>
-                            <img src={URL_IMG + obj.poster_path} alt=""></img>
-                            <div>  {obj.title} </div>
-                        </div>
-                    )}
-                    
+                    <Slider {...settings}>
+                        {data.results.map((obj) =>
+                            <div key={obj.id} className="list-movie">
+                                <div> {obj.vote_count} </div>
+                                <img src={URL_IMG + obj.poster_path} alt="" className="list-movie-img"></img>
+                               
+                                    <div className="modal">
+
+                                        <div>  {obj.title} </div>
+                                        <div> {obj.overview} </div>
+                                    </div>
+                             
+                            </div>
+                        )}
+
                     </Slider>
                 )}
         </div>
