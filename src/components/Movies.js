@@ -3,7 +3,9 @@ import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import "../../src/components/Movies.css";
-import GenreButton from './GenreButton'
+import GenreButton from './GenreButton';
+import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+
 
 function Movies(props) {
 
@@ -52,7 +54,7 @@ function Movies(props) {
 
     // slider 
     var settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 7,
@@ -64,7 +66,7 @@ function Movies(props) {
     // Modal 
 
     let Overview = "";
- 
+
     return (
 
         <div className="container-movie-back">
@@ -74,7 +76,7 @@ function Movies(props) {
                 <button onClick={() => setData(data)}>Data button set</button>
             </div>
             <div>
-                <GenreButton/>
+                <GenreButton />
             </div>
             ------ Genre ID --------
             <div id="genre"> </div>
@@ -86,23 +88,32 @@ function Movies(props) {
 </div>
 
             ) : (
-                <div className="mam-slider-container"> 
-                    <Slider {...settings}>
-                        {data.results.map((obj) =>
-                            <div key={obj.id} className="list-movie tooltip">
-                                <div> {obj.vote_count} </div>
-                                <img src={URL_IMG + obj.poster_path} alt="" className="list-movie-img"></img>
+                    <div className="mam-slider-container">
+                        <Slider {...settings}>
+                            {data.results.map((obj) =>
+                                <div key={obj.id} className="list-movie tooltip">
+                                    <div> {obj.vote_count} </div>
+                                    <img src={URL_IMG + obj.poster_path} alt="" className="list-movie-img"></img>
+                                    <div className="list-movie-score">
+                                        <span className="list-movie-voteAverage"> {obj.vote_average} </span>
+                                        <span className="list-movie-voteCount"> 
+                                    <i className="fas fa-user icon"></i>
+                                            {obj.vote_count}</span>
 
 
-                                <div className="tooltiptext">
-                                    <div className="tooltip-title">  {obj.title} </div>
-                                    <div className="tooltip-overview"> {obj.overview} </div>
-                                    <button className="tooltip-button"> Watch movie </button>
+                                    </div>
+
+                                    <div className="tooltiptext">
+                                        <div className="tooltip-title">  {obj.title} </div>
+                                        <div className="tooltip-overview"> {obj.overview} </div>
+                                        <button className="tooltip-button"> Watch movie </button>
+                                    </div>
+
+
+
                                 </div>
-
-                            </div>
-                        )}
-                    </Slider>
+                            )}
+                        </Slider>
                     </div>
                 )}
         </div>

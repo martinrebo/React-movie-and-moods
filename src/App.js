@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Movies from '././components/Movies';
+import Weather from '././components/Weather';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
 
       <h2> Weather recomended movies</h2>
       <div>
-
+<Weather/>
 
       </div>
       <Movies url={35} />

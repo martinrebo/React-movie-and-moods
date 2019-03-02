@@ -19,17 +19,25 @@ margin: auto;
 border-radius: 4px;
     }
 
-    /* slider */
+    .list-movie-voteCount {
+        color: #fff;
+    }
+    .icon {
+        font-size: 13px;
+    }
+
+.list-movie-voteAverage {
+    color: #ffe300;
+}
+.list-movie-voteAverage::before {
+    content: '★'
+}
+    /* slider 
+===============================*/
     .mam-slider-container {
         max-height: 500px;
     }
 
-    .slick-prev {
-        position: relative;
-    }
-    .slick-next {
-        position: relative;
-    }
 
 /* TOOLTIP 
 ============================ */
