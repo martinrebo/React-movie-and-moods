@@ -55,13 +55,15 @@ function Movies(props) {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 7,
         slidesToScroll: 1,
         arrows: true,
         centerMode: true
     };
 
     // Modal 
+
+    let Overview = "";
  
     return (
 
@@ -84,6 +86,7 @@ function Movies(props) {
 </div>
 
             ) : (
+                <div className="mam-slider-container"> 
                     <Slider {...settings}>
                         {data.results.map((obj) =>
                             <div key={obj.id} className="list-movie tooltip">
@@ -92,13 +95,15 @@ function Movies(props) {
 
 
                                 <div className="tooltiptext">
-                                    <div>  {obj.title} </div>
-                                    <div> {obj.overview} </div>
+                                    <div className="tooltip-title">  {obj.title} </div>
+                                    <div className="tooltip-overview"> {obj.overview} </div>
+                                    <button className="tooltip-button"> Watch movie </button>
                                 </div>
 
                             </div>
                         )}
                     </Slider>
+                    </div>
                 )}
         </div>
 
