@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
-import "../node_modules/slick-carousel/slick/slick.css";
-import "../node_modules/slick-carousel/slick/slick-theme.css";
-import "../src/Movies.css";
+import "../../node_modules/slick-carousel/slick/slick.css";
+import "../../node_modules/slick-carousel/slick/slick-theme.css";
+import "../../src/components/Movies.css";
+import GenreButton from './GenreButton'
 
-function Movies() {
+function Movies(props) {
 
     const URL = 'https://api.themoviedb.org/3/discover/movie?api_key=aedc983b8ecbee54751dd5b6e682190e';
     const URL_IMG = 'https://image.tmdb.org/t/p/w200/';
+    const genreList = [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" }, { "id": 14, "name": "Fantasy" }, { "id": 36, "name": "History" }, { "id": 27, "name": "Horror" }, { "id": 10402, "name": "Music" }, { "id": 9648, "name": "Mystery" }, { "id": 10749, "name": "Romance" }, { "id": 878, "name": "Science Fiction" }, { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" }, { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }]
 
     //Hooks
     const [isLoading, setIsLoading] = useState(true);
 
-    const [genre, setGenre] = useState(27); // genre id default call 12 - Adventure
+    const [genreURL, setGenreURL] = useState(genreList[0].id); //
     useEffect(() => {
         // Update the document title using the browser API
         // document.title = `You clicked ${count} times`;
-        document.getElementById('genre').innerHTML = genre;
+        document.getElementById('genre').innerHTML = genreURL;
+        document.getElementById('genre-name').innerHTML = genreList.leng;
         apiCall();
-    }, [genre]);
+    }, [genreURL]);
+
+
+
+
     const [data, setData] = useState(data);
     useEffect(() => {
         apiCall();
     })
 
 
+
     //URL constructor
-    let urlParameters = '&language=en-US&with_genres=' + genre + '&primary_release_year=2019&sort_by=vote_average.desc&vote_count.gte=10';
+    let urlParameters = '&language=en-US&with_genres=' + props.url + '&primary_release_year=2019&sort_by=vote_average.desc&vote_count.gte=10';
     let urlDiscover = URL + urlParameters;
 
     // API call  
@@ -47,24 +55,28 @@ function Movies() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 5,
         slidesToScroll: 1,
         arrows: true,
         centerMode: true
     };
 
-   // Modal 
-
+    // Modal 
+ 
     return (
 
         <div className="container-movie-back">
             ----- Buttons ----
             <div>
-                <button onClick={() => setGenre(878)}>Gernes button set</button>
+                <button onClick={() => setGenreURL(878)}>Gernes button set</button>
                 <button onClick={() => setData(data)}>Data button set</button>
+            </div>
+            <div>
+                <GenreButton/>
             </div>
             ------ Genre ID --------
             <div id="genre"> </div>
+            <div id="genre-name"> </div>
             -------------State Data ---------------
             {isLoading ? (
                 <div>
@@ -74,19 +86,18 @@ function Movies() {
             ) : (
                     <Slider {...settings}>
                         {data.results.map((obj) =>
-                            <div key={obj.id} className="list-movie">
+                            <div key={obj.id} className="list-movie tooltip">
                                 <div> {obj.vote_count} </div>
                                 <img src={URL_IMG + obj.poster_path} alt="" className="list-movie-img"></img>
-                               
-                                    <div className="modal">
 
-                                        <div>  {obj.title} </div>
-                                        <div> {obj.overview} </div>
-                                    </div>
-                             
+
+                                <div className="tooltiptext">
+                                    <div>  {obj.title} </div>
+                                    <div> {obj.overview} </div>
+                                </div>
+
                             </div>
                         )}
-
                     </Slider>
                 )}
         </div>
