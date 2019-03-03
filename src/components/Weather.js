@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import './../components/Weather.css';
+import './Weather.css';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
@@ -13,8 +13,9 @@ function ConnectedWeather() {
 
     const [data, setData] = useState(data);
     useEffect(() => {
-        apiCall();
-        checkId();
+        apiCall(); // get new data on 
+        checkId(); // 
+        
     }, []);
 
     const [id, setId] = useState("2");
@@ -29,21 +30,20 @@ function ConnectedWeather() {
             })
             .then(function (myJson) {
                 setData(myJson);
-                console.log(myJson);
-                console.log(myJson.name);
-                console.log(myJson.weather[0].id);
                 checkId(myJson.weather[0].id);
+                document.getElementById('weather-location').innerHTML = myJson.name;
+                document.getElementById('weather-status').innerHTML = myJson.weather[0].description;
 
             });
 
     }
-
+// Function to convert 3digits response of apiCall into 1 letter String. 
     function checkId(param) {
         let stringId = param + "";
         let codeId = stringId.charAt(0);
         convertId(codeId);
     }
-    
+    // Funtion to convert the Weather Id into the Gerre ID needed for URLgenre in Movies.js
     function convertId(value) {
         switch (value) {
             case '2':
@@ -66,7 +66,7 @@ function ConnectedWeather() {
             break;
 
             case '8':
-            value = '18'; // Clouds weather set URL genre value to Comedy movies
+            value = '35'; // Clouds weather set URL genre value to Comedy movies
             break;
             default:
             value = "28"; // action movies by default
@@ -76,7 +76,11 @@ function ConnectedWeather() {
 
 
     return (
-        <div id="weather-data"> {id} </div>
+        <div className="weather-container">
+        <div id="weather-data"> {id}  this is the drama id for the URL  </div>
+        <div id="weather-location"> </div>
+        <div id="weather-status"> </div>
+        </div>
     )
 }
 

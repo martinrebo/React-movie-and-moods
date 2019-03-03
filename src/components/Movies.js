@@ -21,8 +21,8 @@ function Movies(props) {
         // Update the document title using the browser API
         // document.title = `You clicked ${count} times`;
         document.getElementById('genre').innerHTML = genreURL;
-        document.getElementById('genre-name').innerHTML = genreList.leng;
-    }, [genreURL]);
+        document.getElementById('genre-name').innerHTML = genreList[0].name;
+    }, []);
 
 
     const [data, setData] = useState(data);
@@ -65,18 +65,8 @@ function Movies(props) {
     return (
 
         <div className="container-movie-back">
-            ----- Buttons ----
-            <div>
-                <button onClick={() => setGenreURL(878)}>Gernes button set</button>
-                <button onClick={() => setData(data)}>Data button set</button>
-            </div>
-            <div>
-                <GenreButton />
-            </div>
-            ------ Genre ID --------
             <div id="genre"> </div>
             <div id="genre-name"> </div>
-            -------------State Data ---------------
             {isLoading ? (
                 <div>
                     "loading ...  "
