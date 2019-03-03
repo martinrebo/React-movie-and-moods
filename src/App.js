@@ -10,13 +10,11 @@ function App() {
   const [genreURL, setGenreURL] = useState(12);
 
   return (
+    
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Movie and moods
-          </p>
-      </header>
+        <p>Movie and moods</p></header>
       <br></br>
 
       <h2> Weather recomended movies</h2>
