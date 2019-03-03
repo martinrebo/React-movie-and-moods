@@ -22,16 +22,13 @@ function Movies(props) {
         // document.title = `You clicked ${count} times`;
         document.getElementById('genre').innerHTML = genreURL;
         document.getElementById('genre-name').innerHTML = genreList.leng;
-        apiCall();
     }, [genreURL]);
-
-
 
 
     const [data, setData] = useState(data);
     useEffect(() => {
         apiCall();
-    })
+    },[]);
 
 
 
@@ -52,6 +49,7 @@ function Movies(props) {
             });
     }
 
+
     // slider 
     var settings = {
         dots: false,
@@ -63,9 +61,6 @@ function Movies(props) {
         centerMode: true
     };
 
-    // Modal 
-
-    let Overview = "";
 
     return (
 
