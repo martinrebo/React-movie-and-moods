@@ -7,6 +7,7 @@ import GenreButton from './GenreButton';
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 
 
+
 function Movies(props) {
 
     const URL = 'https://api.themoviedb.org/3/discover/movie?api_key=aedc983b8ecbee54751dd5b6e682190e';
@@ -54,11 +55,46 @@ function Movies(props) {
     var settings = {
         dots: false,
         infinite: true,
+        focusOnSelect: false,
         speed: 500,
-        slidesToShow: 7,
+        slidesToShow: 6,
         slidesToScroll: 1,
         arrows: true,
-        centerMode: true
+        // prevArrow: '<i class="fas fa-angle-left"></i>',
+        // nextArrow: ' <i class="fas fa-angle-right"></i>',
+        centerMode: true,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 1
+
+                }
+              },
+
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
     };
 
 
