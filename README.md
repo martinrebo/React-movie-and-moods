@@ -29,11 +29,11 @@ The movie db<br>
 Open [The movie db](https://www.themoviedb.org/) 
 
 ## Backlog Improvements
-Create Component that recomend movies based on Weather / Location
-Use Redux
-Add Jest Test
-Try Rakuten APIS
-Add Users
-Backend with node and express
+Create Component that recomend movies based on Weather / Location <br>
+Use Redux <br>
+Add Jest Test <br>
+Try Rakuten APIS <br>
+Add Users <br>
+Backend with node and express <br>
 (...)
 
