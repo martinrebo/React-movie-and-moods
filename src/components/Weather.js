@@ -1,28 +1,25 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './Weather.css';
-import {connect} from 'react-redux';
+import Movies from './Movies';
 
-const mapStateToProps = state => {
-    return { articles: state.articles };
-  };
 
-function ConnectedWeather() {
 
-    let urlDiscover = '//api.openweathermap.org/data/2.5/weather?q=Barcelona&APPID=57af1d6f8f62ddb2a5354ea541196443';
+function Weather() {
 
-    const [data, setData] = useState(data);
+    let urlDiscover = 'error//api.openweathermap.org/data/2.5/weather?q=Barcelona&APPID=83372d5ff184f424adfd29285cb2a296';
+
+    const [data, setData] = useState({data});
     useEffect(() => {
         apiCall(); // get new data on 
-        checkId(); // 
-        
+
     }, []);
 
     const [id, setId] = useState("2");
-    // useEffect(() => {
-    //     checkId();
-    // },[]);
-
+    useEffect(() => {
+        checkId(id);
+    },[id]);
+ 
     function apiCall() {
         fetch(urlDiscover)
             .then(function (response) {
@@ -34,14 +31,20 @@ function ConnectedWeather() {
                 document.getElementById('weather-location').innerHTML = myJson.name;
                 document.getElementById('weather-status').innerHTML = myJson.weather[0].description;
 
-            });
+            })
+            .catch( error => {
+                throw(error);
+            }
+
+            );
 
     }
-// Function to convert 3digits response of apiCall into 1 letter String. 
+    // Function to convert 3digits response of apiCall into 1 letter String. 
     function checkId(param) {
         let stringId = param + "";
         let codeId = stringId.charAt(0);
         convertId(codeId);
+        console.log(codeId);
     }
     // Funtion to convert the Weather Id into the Gerre ID needed for URLgenre in Movies.js
     function convertId(value) {
@@ -54,36 +57,41 @@ function ConnectedWeather() {
                 break;
             // More cases here
             case '5':
-            value = '80'; // Rain weather set URL genre value to Crime movies
-            break;
+                value = '80'; // Rain weather set URL genre value to Crime movies
+                break;
 
             case '6':
-            value = '16'; // Snow weather set URL genre value to Animation movies
-            break;
+                value = '16'; // Snow weather set URL genre value to Animation movies
+                break;
 
             case '7':
-            value = '99'; // Atmosphere weather set URL genre value to Documentaries movies
-            break;
+                value = '99'; // Atmosphere weather set URL genre value to Documentaries movies
+                break;
 
             case '8':
-            value = '35'; // Clouds weather set URL genre value to Comedy movies
-            break;
+                value = '35'; // Clouds weather set URL genre value to Comedy movies
+                break;
             default:
-            value = "28"; // action movies by default
-            }
-            return setId(value);
+                value = "28"; // action movies by default
+        }
+        return setId(value);
     }
+
+    
 
 
     return (
-        <div className="weather-container">
-        <div id="weather-data"> {id}  this is the drama id for the URL  </div>
-        <div id="weather-location"> </div>
-        <div id="weather-status"> </div>
+        <div>
+            <div className="weather-container">
+                <div id="weather-data"> {id}  this is the genre drama id for the URL  </div>
+                <div id="weather-location"> </div>
+                <div id="weather-status"> </div>
+            </div>
+            <h2> React Component Recomended Movies base on Barcelona Weather</h2>
+            <Movies url={id}/>
         </div>
     )
 }
 
-const Weather = connect(mapStateToProps)(ConnectedWeather);
 
 export default Weather;

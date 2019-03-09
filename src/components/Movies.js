@@ -17,17 +17,20 @@ function Movies(props) {
     //Hooks
     const [isLoading, setIsLoading] = useState(true);
 
-    const [genreURL, setGenreURL] = useState(genreList[0].id); //
-    useEffect(() => {
-        // Update the document title using the browser API
-        // document.title = `You clicked ${count} times`;
-        document.getElementById('genre').innerHTML = genreURL;
-        document.getElementById('genre-name').innerHTML = genreList[0].name;
-    }, []);
 
-
-    const [data, setData] = useState(data);
+    const [data, setData] = useState({});
     useEffect(() => {
+
+        function apiCall() {
+            fetch(urlDiscover)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    setData(myJson);
+                    setIsLoading(false);
+                });
+        }
         apiCall();
     },[]);
 
@@ -39,16 +42,7 @@ function Movies(props) {
 
     // API call  
 
-    function apiCall() {
-        fetch(urlDiscover)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                setData(myJson);
-                setIsLoading(false);
-            });
-    }
+
 
 
     // slider 
@@ -101,8 +95,6 @@ function Movies(props) {
     return (
 
         <div className="container-movie-back">
-            <div id="genre"> </div>
-            <div id="genre-name"> </div>
             {isLoading ? (
                 <div>
                     "loading ...  "

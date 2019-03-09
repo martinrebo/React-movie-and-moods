@@ -5,7 +5,8 @@ import './App.css';
 import Movies from '././components/Movies';
 import Weather from '././components/Weather';
 import RakutenMenu from './components/RakutenMenu';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import ClassWeather from './components/ClassWeahter';
 
 function App() {
 
@@ -19,10 +20,6 @@ function App() {
         <p>Movie and moods</p></header>
       <br></br>
       <RakutenMenu/>
-      <h2> Weather recomended movies</h2>
-      <div>
-        <Weather />
-      </div>
       <h2> React Component for Comedy Movies </h2>
       <Movies url={35} />
       <h2> React Component for  Adventure Movies</h2>

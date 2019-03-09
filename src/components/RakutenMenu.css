@@ -86,6 +86,11 @@ border: #333 2px solid;
     top: -7px;
 }
 
+.user a{
+    color: #fff;
+    text-decoration: none;
+}
+
 .readme {
     float: right;
 }
@@ -135,4 +140,12 @@ border: #333 2px solid;
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
     color: #F0D500;
+  }
+
+  /* Hide elements on mobile */
+
+  @media only screen and (max-width: 600px) {
+
+    .search {display: none}
+    .react {display: none}
   }
