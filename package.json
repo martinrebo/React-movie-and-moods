@@ -1,6 +1,7 @@
 {
-  "name": "mam",
-  "version": "0.1.0",
+  "name": "rakuten",
+  "version": "1.0.0",
+  "homepage": "https://martinreboredo.com/proyectos/rakuten",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
